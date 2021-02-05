@@ -39,7 +39,7 @@ export type rootStateType = {
 export let state: rootStateType = {
     profilePage: {
         posts: [
-            {id: 1, message: "Hello. How are you", likesCounts: 78},
+            {id: 1, message: "Hello. How are you", likesCounts: 6546462132184},
             {id: 2, message: "Yo. I am busy now.", likesCounts: 6546462135555},
             {id: 3, message: "Hello. i am your friend", likesCounts: 1005656565650000},
         ],
