@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf32f19b-e7ab-4d56-beb4-7417b1a70239" name="Default Changelist" comment="">
+    <list default="true" id="cf32f19b-e7ab-4d56-beb4-7417b1a70239" name="Default Changelist" comment="change post">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <list id="c9ef3ffc-accc-4f78-b797-399d2909b6ca" name="Revert &quot;change post&quot;" comment="Revert &quot;change post&quot;&#10;&#10;This reverts commit 3e4f4576">
       <change beforePath="$PROJECT_DIR$/src/redux/state.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/state.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,10 +123,45 @@
       <workItem from="1612432528202" duration="14441000" />
       <workItem from="1612464366916" duration="753000" />
       <workItem from="1612507570075" duration="3391000" />
+      <workItem from="1612548665487" duration="423000" />
     </task>
+    <task id="LOCAL-00001" summary="Revert &quot;change post&quot;&#10;&#10;This reverts commit 3e4f4576">
+      <created>1612534132226</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612534132226</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Subject" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;change post&quot;&#10;&#10;This reverts commit 3e4f4576" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;change post&quot;&#10;&#10;This reverts commit 3e4f4576" />
   </component>
 </project>
