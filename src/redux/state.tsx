@@ -41,7 +41,7 @@ export let state: rootStateType = {
         posts: [
             {id: 1, message: "Hello. How are you", likesCounts: 78},
             {id: 2, message: "Yo. I am busy now.", likesCounts: 25},
-            {id: 3, message: "Hello. Fuck you", likesCounts: 35},
+            {id: 3, message: "Hello. i am your friend", likesCounts: 35},
         ],
         newPostText: ""
     },
