@@ -18,5 +18,3 @@ export const reRenderDomTree = (state:rootStateType) => {
     );
 }
 
-//dialogs={state.messagesPage.dialogs} messages={state.messagesPage.messages}
-//                      posts={state.profilePage.posts} addPost={addPost}

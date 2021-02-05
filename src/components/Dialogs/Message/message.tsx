@@ -11,7 +11,6 @@ type MessagesItemPropsType = {
 const Message = (props: MessagesItemPropsType) => {
 
     return <div className={s.dialog}>{props.message}</div>
-
 }
 
 export default Message;

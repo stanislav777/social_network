@@ -61,12 +61,11 @@ export let state: rootStateType = {
     }
 }
 
-
 export let addPost = () =>{
     const newPost: postPropsType = {
         id:4,
         message: (state.profilePage.newPostText),
-        likesCounts: 20
+        likesCounts: 45
     }
   state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = ""
