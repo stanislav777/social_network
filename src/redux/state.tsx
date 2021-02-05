@@ -39,9 +39,9 @@ export type rootStateType = {
 export let state: rootStateType = {
     profilePage: {
         posts: [
-            {id: 1, message: "Hello. How are you", likesCounts: 5},
-            {id: 2, message: "Yo. I am busy now.", likesCounts: 3},
-            {id: 3, message: "Hello. My friend", likesCounts: 9600},
+            {id: 1, message: "Hello. How are you", likesCounts: 78},
+            {id: 2, message: "Yo. I am busy now.", likesCounts: 25},
+            {id: 3, message: "Hello. Fuck you", likesCounts: 35},
         ],
         newPostText: ""
     },
