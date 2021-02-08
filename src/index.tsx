@@ -1,12 +1,12 @@
 import React from "react";
 import "./index.css";
-import {addPost, rootStateType, updateNewPostText} from "./redux/state";
+import state, {addPost, rootStateType, updateNewPostText} from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 
-export const reRenderDomTree = (state:rootStateType) => {
+ const reRenderDomTree = (state:rootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <React.StrictMode>
@@ -16,3 +16,5 @@ export const reRenderDomTree = (state:rootStateType) => {
         document.getElementById("root")
     );
 }
+
+reRenderDomTree(state)

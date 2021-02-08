@@ -1,5 +1,7 @@
 
-import {reRenderDomTree} from "../render";
+let reRenderDomTree = (state: rootStateType) => {
+
+}
 
 export type dialogPropsType =
     {
@@ -61,7 +63,7 @@ export let state: rootStateType = {
     }
 }
 
-export let addPost = () =>{
+export const addPost = () =>{
     const newPost: postPropsType = {
         id:4,
         message: (state.profilePage.newPostText),
@@ -72,9 +74,13 @@ export let addPost = () =>{
     reRenderDomTree(state);
 }
 
-export let updateNewPostText = (postText: string) =>{
+export const updateNewPostText = (postText: string) =>{
        state.profilePage.newPostText = postText;
     reRenderDomTree(state);
+}
+
+export const subscriber = (observer: rootStateType) => {
+    reRenderDomTree = observer;
 }
 
 export default state;
