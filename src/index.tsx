@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import state, {addPost, rootStateType, updateNewPostText} from "./redux/state";
+import state, {addPost, rootStateType, subscriber, updateNewPostText} from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
@@ -18,3 +18,5 @@ import App from "./App";
 }
 
 reRenderDomTree(state)
+
+subscriber(reRenderDomTree);

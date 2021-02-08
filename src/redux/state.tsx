@@ -1,5 +1,5 @@
 
-let reRenderDomTree = (state: rootStateType) => {
+let reRenderDomTree = () => {
 
 }
 
@@ -71,16 +71,16 @@ export const addPost = () =>{
     }
   state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = ""
-    reRenderDomTree(state);
+    reRenderDomTree();
 }
 
 export const updateNewPostText = (postText: string) =>{
        state.profilePage.newPostText = postText;
-    reRenderDomTree(state);
+    reRenderDomTree();
 }
 
-export const subscriber = (observer: rootStateType) => {
-    reRenderDomTree = observer;
+export const subscriber = (callback: () => void) => {
+    reRenderDomTree = callback;
 }
 
 export default state;
