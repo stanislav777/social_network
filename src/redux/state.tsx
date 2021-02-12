@@ -1,5 +1,5 @@
 
-let reRenderDomTree = () => {
+let _callSubscriber = () => {
 
 }
 
@@ -38,49 +38,55 @@ export type rootStateType = {
     messagesPage: messagesPageType,
    }
 
-export let state: rootStateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: "Hello. How are you", likesCounts: 2184},
-            {id: 2, message: "Yo. I am busy now.", likesCounts: 45},
-            {id: 3, message: "Hello. i am your friend", likesCounts: 56},
-        ],
-        newPostText: ""
+let store = {
+
+     _state: /*rootStateType*/ {
+        profilePage: {
+            posts: [
+                {id: 1, message: "Hello. How are you", likesCounts: 2184},
+                {id: 2, message: "Yo. I am busy now.", likesCounts: 45},
+                {id: 3, message: "Hello. i am your friend", likesCounts: 56},
+            ],
+            newPostText: ""
+        },
+        messagesPage: {
+            dialogs: [
+                {id: 1, name: "Stanislav"},
+                {id: 2, name: "Egor"},
+                {id: 3, name: "Misha"},
+                {id: 5, name: "Roma"},
+            ],
+            messages: [
+                {id: 1, message: "Hi. How are you"},
+                {id: 2, message: "All right"},
+                {id: 3, message: "Good day"},
+                {id: 4, message: "Hi. How are you"},
+            ],
+        }
     },
-    messagesPage: {
-        dialogs: [
-            {id: 1, name: "Stanislav"},
-            {id: 2, name: "Egor"},
-            {id: 3, name: "Misha"},
-            {id: 5, name: "Roma"},
-        ],
-        messages: [
-            {id: 1, message: "Hi. How are you"},
-            {id: 2, message: "All right"},
-            {id: 3, message: "Good day"},
-            {id: 4, message: "Hi. How are you"},
-        ],
+      getState() {
+         return this._state
+      },
+
+      addPost() {
+        const newPost: postPropsType = {
+            id: 4,
+            message: (store._state.profilePage.newPostText),
+            likesCounts: 45
+        }
+          this._state.profilePage.posts.push(newPost);
+          this._state.profilePage.newPostText = ""
+        _callSubscriber();
+    },
+
+      updateNewPostText (postText: string)  {
+          this._state.profilePage.newPostText = postText;
+        _callSubscriber();
+    },
+
+     subscriber (callback: () => void) {
+       _callSubscriber = callback;
     }
-}
 
-export const addPost = () =>{
-    const newPost: postPropsType = {
-        id:4,
-        message: (state.profilePage.newPostText),
-        likesCounts: 45
-    }
-  state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = ""
-    reRenderDomTree();
 }
-
-export const updateNewPostText = (postText: string) =>{
-       state.profilePage.newPostText = postText;
-    reRenderDomTree();
-}
-
-export const subscriber = (callback: () => void) => {
-    reRenderDomTree = callback;
-}
-
-export default state;
+export default store;

@@ -11,7 +11,7 @@ import {rootStateType} from "./redux/state";
 type  AppPropsType = {
 
     addPost: () =>void
-    state: rootStateType
+    store: _state<rootStateType>
     updateNewPostText: (postText: string) =>void
 }
 
@@ -21,8 +21,8 @@ const App = (props: AppPropsType) => {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={"/dialogs"} render={() => <Dialogs dialogs={props.state.messagesPage.dialogs} messages={props.state.messagesPage.messages}/>}/>
-                <Route path={"/profile"} render={() => <Profile addPost={props.addPost} posts={props.state.profilePage.posts} updateNewPostText = {props.updateNewPostText} newPostText = {props.state.profilePage.newPostText}/>}/>
+                <Route path={"/dialogs"} render={() => <Dialogs dialogs={props.store._state.messagesPage.dialogs} messages={props.store._state.messagesPage.messages}/>}/>
+                <Route path={"/profile"} render={() => <Profile addPost={props.store.addPost} posts={props.store._state.profilePage.posts} updateNewPostText = {props.updateNewPostText} newPostText = {props.store._state.profilePage.newPostText}/>}/>
             </div>
         </div>
 
