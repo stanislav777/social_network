@@ -1,4 +1,7 @@
 
+const  ADD_POST  = "addPost"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+
 let _callSubscriber = () => {
 
 }
@@ -23,8 +26,8 @@ export type postPropsType =
         likesCounts: number
     }
 
-export type profilePageType ={
-    posts: Array <postPropsType>
+export type profilePageType = {
+    posts: Array<postPropsType>
     newPostText: string
 }
 export type messagesPageType = {
@@ -36,11 +39,16 @@ export type messagesPageType = {
 export type rootStateType = {
     profilePage: profilePageType,
     messagesPage: messagesPageType,
-   }
+}
+export type  StoreType = {
+    _state: rootStateType
+    getState:()=>rootStateType
+    subscriber: (callback: () => void) => void
+}
 
-let store = {
+let store : StoreType = {
 
-     _state: /*rootStateType*/ {
+    _state: /*rootStateType*/ {
         profilePage: {
             posts: [
                 {id: 1, message: "Hello. How are you", likesCounts: 2184},
@@ -64,29 +72,34 @@ let store = {
             ],
         }
     },
-      getState() {
-         return this._state
-      },
+    getState() {
+        return this._state
+    },
+    subscriber(callback) {
+        _callSubscriber = callback;
+    },
 
-      addPost() {
-        const newPost: postPropsType = {
-            id: 4,
-            message: (store._state.profilePage.newPostText),
-            likesCounts: 45
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            const newPost: postPropsType = {
+                id: 4,
+                message: (store._state.profilePage.newPostText),
+                likesCounts: 45
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = ""
+            _callSubscriber();
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.postText;
+            _callSubscriber();
         }
-          this._state.profilePage.posts.push(newPost);
-          this._state.profilePage.newPostText = ""
-        _callSubscriber();
-    },
-
-      updateNewPostText (postText: string)  {
-          this._state.profilePage.newPostText = postText;
-        _callSubscriber();
-    },
-
-     subscriber (callback: () => void) {
-       _callSubscriber = callback;
     }
-
 }
+
+export const updateNewPostTextActionCreator = (postText) => ({ type: UPDATE_NEW_POST_TEXT, newText: postText })
+
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+
 export default store;

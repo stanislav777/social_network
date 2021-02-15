@@ -6,13 +6,12 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 
- const reRenderDomTree = () => {
+const reRenderDomTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <React.StrictMode>
                 <App state={store.getState()}
-                     addPost={store.addPost.bind(store)}
-                     updateNewPostText = {store.updateNewPostText.bind(store)} />
+                     dispatch={store.dispatch.bind(store)}
             </React.StrictMode>,
         </BrowserRouter>,
         document.getElementById("root")
