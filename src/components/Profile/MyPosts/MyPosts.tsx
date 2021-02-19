@@ -6,11 +6,11 @@ import {addPostActionCreator, updateNewPostTextActionCreator, postPropsType, Act
 
 type MyPostsPropsType = {
     posts: Array<postPropsType>
-    dispatch: (action: ActionsTypes ) =>void: () => void
+    dispatch: (action: ActionsTypes) => void
     newPostText: string
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
 
 
     let post = props.posts.map((p) => <Post id={p.id} message={p.message} likesCounts={p.likesCounts}/>)
@@ -18,10 +18,9 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
 
-}
     let addPost = () => {
         if (newPostElement.current) {
-            props.dispatch( addPostActionCreator());
+            props.dispatch(addPostActionCreator());
         }
     }
 
@@ -29,7 +28,7 @@ const MyPosts = (props: MyPostsPropsType) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let postText = newPostElement.current.value;
-            props.dispatch(updateNewPostTextActionCreator())
+            props.dispatch(updateNewPostTextActionCreator(postText))
         }
     }
 
@@ -39,7 +38,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                 <h3> My posts </h3>
             </div>
             <div>
-                <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
+                <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}> </textarea>
                 <div>
                     <button onClick={addPost}>add post</button>
                 </div>
@@ -51,4 +50,3 @@ const MyPosts = (props: MyPostsPropsType) => {
     )
 }
 
-export default MyPosts;

@@ -1,15 +1,24 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css";
 import Message from "./Message/message";
 import DialogItem from "./DialogItem/dialogItem";
-import {dialogPropsType, messagePropsType} from "../../redux/state";
+import {
+    dialogPropsType,
+    messagePropsType,
+    sendMessageCreator,
+    StoreType,
+    updateNewMessageTextCreator
+} from "../../redux/state";
 
 type  DialogsPropsType = {
     dialogs: Array<dialogPropsType>
     messages: Array<messagePropsType>
+    store: StoreType
+    newMessageText: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {
+
 
     let dialogs = props.dialogs.map((d) =>
         <DialogItem id={d.id} name={d.name}/>
@@ -17,12 +26,16 @@ const Dialogs = (props: DialogsPropsType) => {
     let messages = props.messages.map((m) =>
         <Message id={m.id} message={m.message}/>)
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+    let newMessageText = props.newMessageText;
 
-    let addMessage = () => {
-        let text = newMessageElement.current?.value;
-        alert(text)
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator())
     }
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = e.target.value
+        props.store.dispatch(updateNewMessageTextCreator(body))
+    }
+
 
     return (
         <div className={s.dialogs}>
@@ -33,10 +46,14 @@ const Dialogs = (props: DialogsPropsType) => {
                 {messages}
             </div>
             <div>
-            <textarea ref={newMessageElement}>Message</textarea>
+            <textarea value={newMessageText}
+                      placeholder={"Enter you message"}
+
+                      onChange={onNewMessageChange}> </textarea>
+
             </div>
-                <div>
-                <button onClick={addMessage}>add message</button>
+            <div>
+                <button onClick={onSendMessageClick}>add message</button>
             </div>
         </div>
     )

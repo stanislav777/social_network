@@ -1,7 +1,7 @@
 import React from "react";
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import {updateNewPostText, postPropsType, ActionsTypes} from "../../redux/state";
+import {ActionsTypes, postPropsType} from "../../redux/state";
+import {MyPosts} from "./MyPosts/MyPosts";
 
 type ProfilePropsType = {
     posts: Array<postPropsType>
