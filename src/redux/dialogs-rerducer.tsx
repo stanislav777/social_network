@@ -1,17 +1,24 @@
-import {PostPropsType} from "./state";
+import {PostPropsType, sendMessageCreator, updateNewMessageTextCreator} from "./state";
 
- const dialogsReducer = (state, action) => {
+const dialogsReducer = (state, action) => {
 
-    if (action.type === "UPDATE_NEW_MESSAGE_TEXT") {
-        state.newMessageText = action.body;
+    switch (action.type) {
+        case "UPDATE_NEW_MESSAGE_TEXT":
+            state.newMessageText = action.body;
+            return state;
 
-    } else if (action.type === "SEND_MESSAGE") {
-        let body = state.newMessageText
-        state.newMessageText = ""
-        state.messages.push({id: 6, message: body});
+        case "SEND_MESSAGE":
+            let body = state.newMessageText
+            state.newMessageText = ""
+            state.messages.push({id: 6, message: body});
+            return state;
+        default:
+            return state;
     }
-
-    return state;
 }
+
+
+export type UpdateNewMessageTextActionType = ReturnType<typeof updateNewMessageTextCreator>
+export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 export default dialogsReducer;

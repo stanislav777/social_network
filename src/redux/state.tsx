@@ -1,13 +1,7 @@
-// const ADD_POST = "addPost"
-// const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
-//
-//
-// const UPDATE_NEW_MESSAGE_TEXT  = "UPDATE_NEW_MESSAGE_TEXT"
-// const SEND_MESSAGE =  "UPDATE_NEW_MESSAGE_TEXT"
 
 
-
-
+import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
+import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from "./dialogs-rerducer";
 
 export type DialogPropsType =
     {
@@ -47,10 +41,8 @@ export type rootStateType = {
 }
 
 
-export type UpdateNewPostTextActionType = ReturnType<typeof  updateNewPostTextActionCreator>
-export type AddPostActionType = ReturnType<typeof addPostActionCreator>
-export type UpdateNewMessageTextActionType = ReturnType<typeof updateNewMessageTextCreator>
-export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
+
+
 
 
 export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType | SendMessageActionType
@@ -126,31 +118,14 @@ let store: StoreType = {
     _callSubscriber(state: rootStateType) {
         console.log('state changed')
     },
+
     dispatch(action) {
-        if (action.type === "ADD_POST") {
-            const newPost: PostPropsType = {
-                id: 4,
-                message: (store._state.profilePage.newPostText),
-                likesCounts: 45
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber(this._state);
 
-        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
+        this._state.profilePage = profileReducer( this._state.profilePage, action )
+        this._state.dialogsPage = dialogsReducer( this._state.dialogsPage, action )
+        // this._state.dialogsPage = sidebarReducer( this._state.dialogsPage, action )
 
-        } else if (action.type === 'UPDATE_NEW_MESSAGE_TEXT') {
-            this._state.dialogsPage.newMessageText = action.body;
-            this._callSubscriber(this._state);
-
-        } else if (action.type === 'SEND_MESSAGE') {
-            let body = this._state.dialogsPage.newMessageText
-            this._state.dialogsPage.newMessageText = ""
-            this._state.dialogsPage.messages.push({id:6, message:body }) ;
-            this._callSubscriber(this._state);
-        }
+        this._callSubscriber(this._state);
 
     }
 }
