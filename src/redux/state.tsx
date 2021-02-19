@@ -9,41 +9,41 @@
 
 
 
-export type dialogPropsType =
+export type DialogPropsType =
     {
         id: number
         name: string
     }
 
-export type messagePropsType =
+export type MessagePropsType =
     {
         id: number
         message: string
     }
 
 
-export type postPropsType =
+export type PostPropsType =
     {
         id: number
         message: string
         likesCounts: number
     }
 
-export type profilePageType = {
-    posts: Array<postPropsType>
+export type ProfilePageType = {
+    posts: Array<PostPropsType>
     newPostText: string
 }
 
-export type messagesPageType = {
-    dialogs: Array<dialogPropsType>
-    messages: Array<messagePropsType>
+export type MessagesPageType = {
+    dialogs: Array<DialogPropsType>
+    messages: Array<MessagePropsType>
     newMessageText: string
 }
 
 
 export type rootStateType = {
-    profilePage: profilePageType,
-    dialogsPage: messagesPageType,
+    profilePage: ProfilePageType,
+    dialogsPage: MessagesPageType,
 }
 
 
@@ -128,7 +128,7 @@ let store: StoreType = {
     },
     dispatch(action) {
         if (action.type === "ADD_POST") {
-            const newPost: postPropsType = {
+            const newPost: PostPropsType = {
                 id: 4,
                 message: (store._state.profilePage.newPostText),
                 likesCounts: 45
