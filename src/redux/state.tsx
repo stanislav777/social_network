@@ -1,6 +1,15 @@
-
-const  ADD_POST  = "addPost"
+const ADD_POST = "addPost"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+
+export type updateNewPostTextActionType = ReturnType<typeof  updateNewPostTextActionCreator>
+
+export type addPostActionType = {
+    type: "ADD_POST"
+    postText: string
+}
+
+export type ActionsTypes = addPostActionType | updateNewPostTextActionType
+
 
 let _callSubscriber = () => {
 
@@ -30,6 +39,7 @@ export type profilePageType = {
     posts: Array<postPropsType>
     newPostText: string
 }
+
 export type messagesPageType = {
     dialogs: Array<dialogPropsType>
     messages: Array<messagePropsType>
@@ -40,13 +50,30 @@ export type rootStateType = {
     profilePage: profilePageType,
     messagesPage: messagesPageType,
 }
+
 export type  StoreType = {
     _state: rootStateType
-    getState:()=>rootStateType
+    getState: () => rootStateType
     subscriber: (callback: () => void) => void
+    dispatch: (action: ActionsTypes) => void
+
 }
 
-let store : StoreType = {
+export const updateNewPostTextActionCreator = (postText: string) => {
+    return {
+        type: "UPDATE_NEW_POST_TEXT",
+        newText: postText
+    } as const
+}
+
+export const addPostActionCreator = (postText: string): addPostActionType => {
+    return {
+        type: "ADD_POST",
+        postText: postText
+    } as const
+}
+
+let store: StoreType = {
 
     _state: /*rootStateType*/ {
         profilePage: {
@@ -80,7 +107,7 @@ let store : StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
+        if (action.type === "ADD_POST") {
             const newPost: postPropsType = {
                 id: 4,
                 message: (store._state.profilePage.newPostText),
@@ -89,17 +116,11 @@ let store : StoreType = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = ""
             _callSubscriber();
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+        } else if (action.type === "UPDATE_NEW_POST_TEXT") {
             this._state.profilePage.newPostText = action.postText;
             _callSubscriber();
         }
     }
 }
-
-export const updateNewPostTextActionCreator = (postText) => ({ type: UPDATE_NEW_POST_TEXT, newText: postText })
-
-
-export const addPostActionCreator = () => ({ type: ADD_POST })
-
 
 export default store;
