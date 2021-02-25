@@ -1,6 +1,25 @@
-import {PostPropsType, sendMessageCreator, updateNewMessageTextCreator} from "./state";
+import {ActionsTypes, sendMessageCreator, StoreType, updateNewMessageTextCreator} from "./state";
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: "Stanislav"},
+        {id: 2, name: "Egor"},
+        {id: 3, name: "Misha"},
+        {id: 5, name: "Roma"},
+    ],
+    messages: [
+        {id: 1, message: "Hi. How are you"},
+        {id: 2, message: "All right"},
+        {id: 3, message: "Good day"},
+        {id: 4, message: "Hi. How are you"},
+    ],
+    newMessageText: ""
+}
+
+export type InitialDialogsState = typeof initialState
+
+
+const dialogsReducer = (state: InitialDialogsState = initialState , action: ActionsTypes): InitialDialogsState => {
 
     switch (action.type) {
         case "UPDATE_NEW_MESSAGE_TEXT":

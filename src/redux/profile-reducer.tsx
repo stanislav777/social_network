@@ -1,9 +1,16 @@
-import store, {addPostActionCreator, PostPropsType, updateNewPostTextActionCreator} from "./state";
-import exp from "constants";
-import state from "./state";
+import {ActionsTypes, addPostActionCreator, PostPropsType, StoreType, updateNewPostTextActionCreator} from "./state";
 
-const profileReducer = (state, action) => {
 
+let initialState =  {
+    posts: [
+        {id: 1, message: "Hello. How are you", likesCounts: 2184},
+        {id: 2, message: "Yo. I am busy now.", likesCounts: 45},
+        {id: 3, message: "Hello. i am your friend", likesCounts: 56},
+    ],
+        newPostText: ""
+}
+
+const profileReducer = (state:StoreType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case "ADD_POST":
             const newPost: PostPropsType = {

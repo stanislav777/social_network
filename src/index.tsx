@@ -1,20 +1,27 @@
 import React from "react";
 import "./index.css";
-import store, {rootStateType} from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import store from "./redux/redax-store";
 import App from "./App";
 
 
-const reRenderDomTree = (state: rootStateType) => {
+const reRenderDomTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-
-            <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
-
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </BrowserRouter>, document.getElementById("root"));
 }
 
-reRenderDomTree(store.getState())
+reRenderDomTree()
 
-store.subscriber(reRenderDomTree);
+store.subscribe(() => {
+        let state = store.getState();
+
+        reRenderDomTree()
+    }
+);// зачем вызывать  getState ели у нас при вызове в пропсы приходит State?
+
