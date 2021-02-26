@@ -1,8 +1,8 @@
 import React from "react";
-import {sendMessageCreator, StoreType, updateNewMessageTextCreator} from "../../redux/state";
+import {updateNewMessageTextCreator} from "../../redux/state";
 import Dialogs from "./Dialogs";
-import store, {RootReduxState} from "../../redux/redax-store";
-import { InitialDialogsState } from "../../redux/dialogs-rerducer";
+import {RootReduxState} from "../../redux/redax-store";
+import {InitialDialogsState} from "../../redux/dialogs-rerducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
