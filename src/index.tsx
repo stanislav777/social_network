@@ -18,10 +18,5 @@ const reRenderDomTree = () => {
 
 reRenderDomTree()
 
-store.subscribe(() => {
-        let state = store.getState();
-
-        reRenderDomTree()
-    }
-);// зачем вызывать  getState ели у нас при вызове в пропсы приходит State?
+// store.subscribe(reRenderDomTree);
 

@@ -40,11 +40,6 @@ export type rootStateType = {
     dialogsPage: MessagesPageType,
 }
 
-
-
-
-
-
 export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType | SendMessageActionType
 
 
@@ -78,8 +73,7 @@ export type  StoreType = {
     subscriber:  any
     dispatch: (action: ActionsTypes) => void
     _callSubscriber: (state: rootStateType) => void
-
-}
+  }
 
 
 let store: StoreType = {

@@ -1,4 +1,4 @@
-import {ActionsTypes, sendMessageCreator, StoreType, updateNewMessageTextCreator} from "./state";
+import {ActionsTypes, sendMessageCreator, updateNewMessageTextCreator} from './state';
 
 let initialState = {
     dialogs: [
@@ -23,14 +23,18 @@ const dialogsReducer = (state: InitialDialogsState = initialState , action: Acti
 
     switch (action.type) {
         case "UPDATE_NEW_MESSAGE_TEXT":
-            state.newMessageText = action.body;
-            return state;
+            let copyState = {...state}
+            copyState.newMessageText = action.body;
+            return copyState;
 
-        case "SEND_MESSAGE":
-            let body = state.newMessageText
-            state.newMessageText = ""
-            state.messages.push({id: 6, message: body});
-            return state;
+        case "SEND_MESSAGE": {
+            let copyState = {...state}
+            let body = copyState.newMessageText
+            copyState.newMessageText = ""
+            copyState.messages = [...state.messages]
+            copyState.messages.push({id: 6, message: body});
+            return copyState;
+        }
         default:
             return state;
     }

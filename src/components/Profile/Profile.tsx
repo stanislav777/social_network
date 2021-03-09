@@ -1,8 +1,7 @@
-import React from "react";
-import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import {StoreType} from "../../redux/state";
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-
+import React from 'react';
+import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
+import store from '../../redux/state';
 
 
 const Profile = () => {

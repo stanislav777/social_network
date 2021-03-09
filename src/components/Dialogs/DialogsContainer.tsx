@@ -1,29 +1,29 @@
 import React from "react";
-import {updateNewMessageTextCreator} from "../../redux/state";
+import {sendMessageCreator, updateNewMessageTextCreator} from '../../redux/state';
 import Dialogs from "./Dialogs";
 import {RootReduxState} from "../../redux/redax-store";
 import {InitialDialogsState} from "../../redux/dialogs-rerducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-type  DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
+// type  DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const DialogsContainer = (props: DialogsPropsType) => {
-
-
-    let onSendMessageClick = () => {
-        props.sendMessage()
-    }
-
-    let onNewMessageChange = (body: string) => {
-       props.updateNewMessageBody(body)
-    }
-
-
-    return <Dialogs updateNewMessageBody={onNewMessageChange}
-                    sendMessage={onSendMessageClick}
-                    dialogsPage={props.dialogsPage}/>
-}
+// const DialogsContainer = (props: DialogsPropsType) => {
+//
+//
+//     let onSendMessageClick = () => {
+//         props.sendMessage()
+//     }
+//
+//     let onNewMessageChange = (body: string) => {
+//        props.updateNewMessageBody(body)
+//     }
+//
+//
+//     return <Dialogs updateNewMessageBody={onNewMessageChange}
+//                     sendMessage={onSendMessageClick}
+//                     dialogsPage={props.dialogsPage}/>
+// }
 
 type MapStateToPropsType = {
     dialogsPage: InitialDialogsState
@@ -45,11 +45,11 @@ let  mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType  => {
         updateNewMessageBody: (body: string) =>{
             dispatch(updateNewMessageTextCreator(body))
         },
-        sendMessage: () => {}
+        sendMessage: () => {dispatch (sendMessageCreator())}
 
     }
 }
 
 
-export default  connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps,mapDispatchToProps)(DialogsContainer);
+export default  connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps,mapDispatchToProps)(Dialogs);
 
