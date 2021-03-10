@@ -1,39 +1,58 @@
-import {ActionsTypes, addPostActionCreator, PostPropsType, updateNewPostTextActionCreator} from './state';
+import {ActionsTypes, addPostActionCreator, updateNewPostTextActionCreator} from './state';
+
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
 
 
 let initialState = {
-    posts: [
-        {id: 1, message: 'Hello. How are you', likesCounts: 2184},
-        {id: 2, message: 'Yo. I am busy now.', likesCounts: 45},
-        {id: 3, message: 'Hello. i am your friend', likesCounts: 56},
+    users: [
+        {id: 1, followed: true, fullName: 'Bob', status: 'Director', location: {city: 'Minsk', country: 'Belarus'}},
+        {id: 1, followed: true, fullName: 'Jon', status: 'worker', location: {city: 'Chikago', country: 'USA'}},
+        {id: 1, followed: true, fullName: 'Bob', status: 'Director', location: {city: 'Minsk', country: 'Belarus'}},
     ],
-    newPostText: ''
-}
+};
 export type InitialProfileState = typeof initialState
 
-const profileReducer = (state: InitialProfileState = initialState, action: ActionsTypes) => {
+const usersReducer = (state: InitialProfileState = initialState, action: ActionsTypes) => {
     switch (action.type) {
-
-        case 'ADD_POST':
-            const newPost: PostPropsType = {
-                id: 4,
-                message: (state.newPostText),
-                likesCounts: 45
-            }
+        case 'FOLLOW':
             return {
                 ...state,
-                newPostText: '',
-                posts: [...state.posts, newPost]
+                users: state.users.map(t => {
+                    if (t.id === action.id) {
+                        return {...t, followed: true}
+                    }
+                    return t;
+                })
             }
-        case 'UPDATE_NEW_POST_TEXT': {
-            return {...state, newPostText: action.newText};
-        }
+
+        case 'UNFOLLOW':
+            return {
+                ...state,
+                users: state.users.map(t => {
+                    if (t.id === action.id) {
+                        return {...t, followed: false}
+                    }
+                    return t;
+                })
+            }
+        case 'SET_USERS':
+            return {
+                ...state, users: [...action.users, ...action.users]
+            }
+
         default:
             return state;
     }
 }
 
-export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
-export type AddPostActionType = ReturnType<typeof addPostActionCreator>
+export const followAC = (userId) => ({type: 'FOLLOW', userId})
+export const unfollowAC = (userId) => ({type: 'UNFOLLOW', userId})
+export const setUsersAC = (users) => ({type: 'SET_USERS', users})
 
-export default profileReducer
+export type followACType = ReturnType<typeof followACType>
+export type unfollowACType = ReturnType<typeof unfollowACType>
+export type setUsersACType = ReturnType<typeof setUsersACType>
+
+export default usersReducer

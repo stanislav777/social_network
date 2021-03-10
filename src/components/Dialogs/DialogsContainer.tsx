@@ -29,7 +29,7 @@ type MapStateToPropsType = {
     dialogsPage: InitialDialogsState
 }
 
-let mapStateToProps = (state: RootReduxState): MapStateToPropsType =>{
+export let mapStateToProps = (state: RootReduxState): MapStateToPropsType =>{
     return {
         dialogsPage: state.dialogsPage
     }
@@ -40,7 +40,7 @@ type MapDispatchToPropsType = {
     sendMessage: () => void
 }
 
-let  mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType  => {
+export let  mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType  => {
     return {
         updateNewMessageBody: (body: string) =>{
             dispatch(updateNewMessageTextCreator(body))
