@@ -1,11 +1,10 @@
-import React from "react";
-import "./App.css";
-import Header from "./components/Heder/Header";
-import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
-import {Route} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Users from './components/Users/Users';
+import React from 'react';
+import './App.css';
+import Header from './components/Heder/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
+import {Route} from 'react-router-dom';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 const App = () => {

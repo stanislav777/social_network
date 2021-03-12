@@ -1,15 +1,23 @@
 import React from "react";
-import {mapDispatchToProps, mapStateToProps} from "../Dialogs/DialogsContainer";
+import {followAC} from "../../redux/users-reducer";
 
 let mapStateToProps = (state) => {
     return {
-     user: state.usersPage.users
+     users: state.usersPage.users
     }
 }
 
 let mapDispatchToProps = (dispatc) => {
     return{
-
+     follow: (userId) => {
+         dispatc(followAC(userId))
+     },
+        unfollow: (userId) => {
+            dispatc(unfollowAC(userId))
+        },
+        setUsers: (users) => {
+            dispatc(setUsersAC(users))
+        }
     }
 }
 

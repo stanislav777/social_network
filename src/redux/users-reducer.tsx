@@ -1,4 +1,4 @@
-import {ActionsTypes, addPostActionCreator, updateNewPostTextActionCreator} from './state';
+import {ActionsTypes} from './state';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -6,11 +6,7 @@ const SET_USERS = 'SET_USERS';
 
 
 let initialState = {
-    users: [
-        {id: 1, followed: true, fullName: 'Bob', status: 'Director', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: 1, followed: true, fullName: 'Jon', status: 'worker', location: {city: 'Chikago', country: 'USA'}},
-        {id: 1, followed: true, fullName: 'Bob', status: 'Director', location: {city: 'Minsk', country: 'Belarus'}},
-    ],
+    users: [ ],
 };
 export type InitialProfileState = typeof initialState
 
