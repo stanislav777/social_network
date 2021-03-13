@@ -1,4 +1,4 @@
-import {ActionsTypes} from './state';
+import {ActionsTypes, usersPageType} from './state';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -8,11 +8,11 @@ const SET_USERS = 'SET_USERS';
 let initialState = {
     users: [ ],
 };
-export type InitialProfileState = typeof initialState
+export type InitialUserState = typeof initialState
 
-const usersReducer = (state: InitialProfileState = initialState, action: ActionsTypes) => {
+const usersReducer = (state: InitialUserState = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case 'FOLLOW':
+        case FOLLOW:
             return {
                 ...state,
                 users: state.users.map(t => {
@@ -23,7 +23,7 @@ const usersReducer = (state: InitialProfileState = initialState, action: Actions
                 })
             }
 
-        case 'UNFOLLOW':
+        case UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map(t => {
@@ -33,7 +33,7 @@ const usersReducer = (state: InitialProfileState = initialState, action: Actions
                     return t;
                 })
             }
-        case 'SET_USERS':
+        case SET_USERS:
             return {
                 ...state, users: [...action.users, ...action.users]
             }
@@ -43,12 +43,14 @@ const usersReducer = (state: InitialProfileState = initialState, action: Actions
     }
 }
 
-export const followAC = (userId) => ({type: 'FOLLOW', userId})
-export const unfollowAC = (userId) => ({type: 'UNFOLLOW', userId})
-export const setUsersAC = (users) => ({type: 'SET_USERS', users})
 
-export type followACType = ReturnType<typeof followACType>
-export type unfollowACType = ReturnType<typeof unfollowACType>
-export type setUsersACType = ReturnType<typeof setUsersACType>
+
+export const followAC = (userId: string) => ({type: FOLLOW, userId})
+export const unfollowAC = (userId: string) => ({type: UNFOLLOW, userId})
+export const setUsersAC = (users: usersPageType) => ({type: SET_USERS, users})
+
+export type followACType = ReturnType<typeof followAC>
+export type unfollowACType = ReturnType<typeof unfollowAC>
+export type setUsersACType = ReturnType<typeof setUsersAC>
 
 export default usersReducer

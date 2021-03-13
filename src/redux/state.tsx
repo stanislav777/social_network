@@ -1,7 +1,6 @@
-
-
-import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from "./profile-reducer";
-import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from "./dialogs-rerducer";
+import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
+import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-rerducer';
+import {followACType, setUsersACType, unfollowACType} from './users-reducer';
 
 export type DialogPropsType =
     {
@@ -33,47 +32,63 @@ export type MessagesPageType = {
     messages: Array<MessagePropsType>
     newMessageText: string
 }
+// export type usersPageType = {
+//     users: Array<userType>
+// }
+// export type userType = {
+//     user: {
+//         id: string
+//         photoUrl:
+//             followed: boolean
+//         fullName: string
+//         status: string
+//         location: {city: string
+//             country: string
+//     }
+// }
 
 
 export type rootStateType = {
     profilePage: ProfilePageType,
     dialogsPage: MessagesPageType,
+    // usersPage: usersPageType
 }
 
-export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType | SendMessageActionType
+export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType |
+    SendMessageActionType | followACType | unfollowACType | setUsersACType
 
 
 export const updateNewPostTextActionCreator = (postText: string) => {
     return {
-        type: "UPDATE_NEW_POST_TEXT",
+        type: 'UPDATE_NEW_POST_TEXT',
         newText: postText
     } as const
 }
 
 export const addPostActionCreator = () => {
     return {
-        type: "ADD_POST",
+        type: 'ADD_POST',
     } as const
 }
 
 export const updateNewMessageTextCreator = (body: string) => {
     return {
-        type: "UPDATE_NEW_MESSAGE_TEXT",
+        type: 'UPDATE_NEW_MESSAGE_TEXT',
         body
     } as const
 }
 export const sendMessageCreator = () => {
-    return {type: "SEND_MESSAGE"} as const
+    return {type: 'SEND_MESSAGE'} as const
 }
 
 
 export type  StoreType = {
     _state: rootStateType
     getState: () => rootStateType
-    subscriber:  any
+    subscriber: any
     dispatch: (action: ActionsTypes) => void
     _callSubscriber: (state: rootStateType) => void
-  }
+}
 
 
 let store: StoreType = {
@@ -81,26 +96,26 @@ let store: StoreType = {
     _state: /*rootStateType*/ {
         profilePage: {
             posts: [
-                {id: 1, message: "Hello. How are you", likesCounts: 2184},
-                {id: 2, message: "Yo. I am busy now.", likesCounts: 45},
-                {id: 3, message: "Hello. i am your friend", likesCounts: 56},
+                {id: 1, message: 'Hello. How are you', likesCounts: 2184},
+                {id: 2, message: 'Yo. I am busy now.', likesCounts: 45},
+                {id: 3, message: 'Hello. i am your friend', likesCounts: 56},
             ],
-            newPostText: ""
+            newPostText: ''
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: "Stanislav"},
-                {id: 2, name: "Egor"},
-                {id: 3, name: "Misha"},
-                {id: 5, name: "Roma"},
+                {id: 1, name: 'Stanislav'},
+                {id: 2, name: 'Egor'},
+                {id: 3, name: 'Misha'},
+                {id: 5, name: 'Roma'},
             ],
             messages: [
-                {id: 1, message: "Hi. How are you"},
-                {id: 2, message: "All right"},
-                {id: 3, message: "Good day"},
-                {id: 4, message: "Hi. How are you"},
+                {id: 1, message: 'Hi. How are you'},
+                {id: 2, message: 'All right'},
+                {id: 3, message: 'Good day'},
+                {id: 4, message: 'Hi. How are you'},
             ],
-            newMessageText: ""
+            newMessageText: ''
         }
     },
     getState() {
@@ -115,8 +130,8 @@ let store: StoreType = {
 
     dispatch(action) {
 
-        this._state.profilePage = profileReducer( this._state.profilePage, action )
-        this._state.dialogsPage = dialogsReducer( this._state.dialogsPage, action )
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         // this._state.dialogsPage = sidebarReducer( this._state.dialogsPage, action )
 
         this._callSubscriber(this._state);

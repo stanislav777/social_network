@@ -1,7 +1,16 @@
 import React from "react";
-import  styles from './users.module.css';
+import styles from './users.module.css';
 
-let Users = (props) => {
+export type UsersPropsType = {
+    follow: (userId) =>void
+        unfollow: (userId) => void
+    users: []
+        setUsers: (users) => void
+
+}
+
+
+function Users (props:UsersPropsType) {
 
     if (props.users.length ===0) {
         props.setUsers ([
