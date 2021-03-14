@@ -35,17 +35,17 @@ export type MessagesPageType = {
 // export type usersPageType = {
 //     users: Array<userType>
 // }
-// export type userType = {
-//     user: {
-//         id: string
-//         photoUrl:
-//             followed: boolean
-//         fullName: string
-//         status: string
-//         location: {city: string
-//             country: string
-//     }
-// }
+export type UserType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: {
+        city: string
+        country: string
+    }
+}
 
 
 export type rootStateType = {

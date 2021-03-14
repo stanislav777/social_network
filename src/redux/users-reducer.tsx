@@ -1,4 +1,4 @@
-import {ActionsTypes, usersPageType} from './state';
+import {ActionsTypes, UserType} from './state';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -6,7 +6,7 @@ const SET_USERS = 'SET_USERS';
 
 
 let initialState = {
-    users: [ ],
+    users: [ ] as Array<UserType>,
 };
 export type InitialUserState = typeof initialState
 
@@ -15,22 +15,22 @@ const usersReducer = (state: InitialUserState = initialState, action: ActionsTyp
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(t => {
-                    if (t.id === action.id) {
-                        return {...t, followed: true}
+                users: state.users.map(user => {
+                    if (user.id === action.userId) {
+                        return {...user, followed: true}
                     }
-                    return t;
+                    return user;
                 })
             }
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(t => {
-                    if (t.id === action.id) {
-                        return {...t, followed: false}
+                users: state.users.map(user => {
+                    if (user.id === action.userId) {
+                        return {...user, followed: false}
                     }
-                    return t;
+                    return user;
                 })
             }
         case SET_USERS:
@@ -45,9 +45,9 @@ const usersReducer = (state: InitialUserState = initialState, action: ActionsTyp
 
 
 
-export const followAC = (userId: string) => ({type: FOLLOW, userId})
-export const unfollowAC = (userId: string) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: usersPageType) => ({type: SET_USERS, users})
+export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
 
 export type followACType = ReturnType<typeof followAC>
 export type unfollowACType = ReturnType<typeof unfollowAC>
