@@ -1,5 +1,5 @@
 import React from 'react';
-import {followAC, InitialUserState, setUsersAC, unfollowAC} from '../../redux/users-reducer';
+import {followAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
 import {Dispatch} from 'redux';
 import {RootReduxState} from '../../redux/redax-store';
 import Users from './Users';

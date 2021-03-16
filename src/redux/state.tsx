@@ -45,6 +45,10 @@ export type UserType = {
         city: string
         country: string
     }
+    photos: {
+        small: string
+        large: string
+    }
 }
 
 
