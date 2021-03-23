@@ -22,6 +22,7 @@ export type InitialDialogsState = typeof initialState
 const dialogsReducer = (state: InitialDialogsState = initialState, action: ActionsTypes): InitialDialogsState => {
 
     switch (action.type) {
+
         case 'UPDATE_NEW_MESSAGE_TEXT':
             return {...state, newMessageText: action.body};
 

@@ -1,62 +1,38 @@
 import React from 'react';
 import styles from './users.module.css';
+import userPhoto from '../../assets/images/userspng.jpg';
 import {UserType} from '../../redux/state';
-import axios from 'axios';
-import userPhoto from '../../assets/images/userspng.jpg'
+
 
 export type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    onPageChanged: (pageNumber: number) => void
     users: Array<UserType>
-    setUsers: (users: Array<UserType>) => void
-
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
-
-export default function Users(props: UsersPropsType) {
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                props.setUsers(response.data.items)
-            });
-        }
+let Users = (props: UsersPropsType) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-    //         props.setUsers([
-    //             {
-    //                 id: 0,
-    //                 photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/3w8tfsi8ccs.jpg',
-    //                 followed: true,
-    //                 fullName: 'Bob',
-    //                 status: 'Director',
-    //                 location: {city: 'Minsk', country: 'Belarus'}
-    //             },
-    //             {
-    //                 id: 2,
-    //                 photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/3w8tfsi8ccs.jpg',
-    //                 followed: true,
-    //                 fullName: 'Jon',
-    //                 status: 'Worker',
-    //                 location: {city: 'Chikago', country: 'USA'}
-    //             },
-    //             {
-    //                 id: 3,
-    //                 photoUrl: 'https://www.ejin.ru/wp-content/uploads/2018/10/3w8tfsi8ccs.jpg',
-    //                 followed: true,
-    //                 fullName: 'Bim',
-    //                 status: 'Solder',
-    //                 location: {city: 'Minsk', country: 'Belarus'}
-    //             },
-    //         ])
 
-
-
-        return <div>
-            <button onClick={getUsers}> getUsers</button>
-            {
-                props.users.map(el => <div key={el.id}>
-
+    return <div>
+        <div>
+            {pages.map(el => {
+                return <span className={props.currentPage === el ? styles.selectedPage : ''}
+                             onClick={() => {
+                                 props.onPageChanged(el)
+                             }}> {el} </span>
+            })}
+        </div>
+        {
+            props.users.map(el => <div key={el.id}>
           <span>
-
                <div>
                    <img src={el.photos.small != null ? el.photos.small : userPhoto} className={styles.userPhoto}/>
                </div>
@@ -64,26 +40,20 @@ export default function Users(props: UsersPropsType) {
                   {el.followed
                       ? <button onClick={() => {
                           props.follow(el.id)
-                      }}> unFollow </button>
+                      }}> Follow </button>
                       : <button onClick={() => {
                           props.unfollow(el.id)
-                      }}> Follow </button>}
+                      }}> unFollow </button>}
               </div>
           </span>
-                    <span>
+                <span>
               <span>
-                  <div>{el.fullName}</div>
+                  <div>{el.name}</div>
                   <div> {el.status} </div>
               </span>
-              {/*<span>*/}
-              {/*    <div>{el.location.city}</div>*/}
-              {/*    <div>{el.location.country}</div>*/}
-              {/*</span>*/}
           </span>
-
-                </div>)
-            }
-        </div>
-}
-
-// export default Users;
+            </div>)
+        }
+    </div>
+};
+export default Users;

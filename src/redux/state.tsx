@@ -1,6 +1,13 @@
 import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
 import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-rerducer';
-import {followACType, setUsersACType, unfollowACType} from './users-reducer';
+import {
+    followACType,
+    setCurrentPageACType, setIsFetchingACType,
+    setTotalCountAC,
+    setTotalCountACType,
+    setUsersACType,
+    unfollowACType
+} from './users-reducer';
 
 export type DialogPropsType =
     {
@@ -39,7 +46,7 @@ export type UserType = {
     id: number
     photoUrl: string
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: {
         city: string
@@ -59,7 +66,7 @@ export type rootStateType = {
 }
 
 export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType |
-    SendMessageActionType | followACType | unfollowACType | setUsersACType
+    SendMessageActionType | followACType | unfollowACType | setUsersACType | setCurrentPageACType | setTotalCountACType | setIsFetchingACType
 
 
 export const updateNewPostTextActionCreator = (postText: string) => {
