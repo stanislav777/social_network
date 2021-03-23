@@ -36,38 +36,45 @@ type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
-    setCurrentPage:(pageNumber:number) => void
-    setTotalCount:(totalCount:number) => void
-    toggleIsFetching:(isFetching:boolean)=> void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+// let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//
+//     return {
+//         follow: (userId: number) => {
+//             dispatch(followAC(userId))
+//         },
+//
+//         unfollow: (userId: number) => {
+//
+//             dispatch(unfollowAC(userId))
+//
+//         },
+//         setUsers: (users: Array<UserType>) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (pageNumber: number) => {
+//             dispatch(setCurrentPageAC(pageNumber))
+//         },
+//         setTotalCount: (totalCount) => {
+//             dispatch(setTotalCountAC(totalCount))
+//         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(setIsFetchingAC(isFetching))
+//         }
+//
+//     }
+//
+// }
 
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-
-        unfollow: (userId: number) => {
-
-            dispatch(unfollowAC(userId))
-
-        },
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber:number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching:boolean) =>{
-            dispatch(setIsFetchingAC(isFetching))
-        }
-
-    }
-
-}
-
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+    follow: followAC,
+    unfollow: unfollowAC,
+    setUsers: setUsersAC,
+    setCurrentPage: setCurrentPageAC,
+    setTotalCount: setTotalCountAC,
+    toggleIsFetching: setIsFetchingAC
+})(UsersAPIComponent);
