@@ -1,4 +1,4 @@
-import {ActionsTypes, sendMessageCreator, updateNewMessageTextCreator} from './state';
+
 
 let initialState = {
     dialogs: [
@@ -19,7 +19,7 @@ let initialState = {
 export type InitialDialogsState = typeof initialState
 
 
-const dialogsReducer = (state: InitialDialogsState = initialState, action: ActionsTypes): InitialDialogsState => {
+const dialogsReducer = (state: InitialDialogsState = initialState, action: ActionsType): InitialDialogsState => {
 
     switch (action.type) {
 
@@ -38,8 +38,17 @@ const dialogsReducer = (state: InitialDialogsState = initialState, action: Actio
     }
 }
 
-
-export type UpdateNewMessageTextActionType = ReturnType<typeof updateNewMessageTextCreator>
-export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
+export const updateNewMessageTextCreator = (body: string) => {
+    return {
+        type: 'UPDATE_NEW_MESSAGE_TEXT',
+        body
+    } as const
+}
+export const sendMessageCreator = () => {
+    return {type: 'SEND_MESSAGE'} as const
+}
+type ActionsType =
+    | ReturnType<typeof updateNewMessageTextCreator>
+    | ReturnType<typeof sendMessageCreator>
 
 export default dialogsReducer;

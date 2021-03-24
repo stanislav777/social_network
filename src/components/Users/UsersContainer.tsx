@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-    followAC,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalCountAC,
-    setUsersAC,
-    unfollowAC
-} from '../../redux/users-reducer';
-import {Dispatch} from 'redux';
+import {follow, setCurrentPage, setIsFetching, setTotalCount, setUsers, unfollow} from '../../redux/users-reducer';
 import {RootReduxState} from '../../redux/redax-store';
 import UsersAPIComponent from './UsersAPIComponent';
 import {connect} from 'react-redux';
@@ -71,10 +63,10 @@ type MapDispatchToPropsType = {
 // }
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
-    follow: followAC,
-    unfollow: unfollowAC,
-    setUsers: setUsersAC,
-    setCurrentPage: setCurrentPageAC,
-    setTotalCount: setTotalCountAC,
-    toggleIsFetching: setIsFetchingAC
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalCount,
+    toggleIsFetching: setIsFetching
 })(UsersAPIComponent);

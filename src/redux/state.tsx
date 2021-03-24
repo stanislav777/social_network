@@ -1,13 +1,5 @@
-import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
-import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-rerducer';
-import {
-    followACType,
-    setCurrentPageACType, setIsFetchingACType,
-    setTotalCountAC,
-    setTotalCountACType,
-    setUsersACType,
-    unfollowACType
-} from './users-reducer';
+import dialogsReducer from './dialogs-rerducer';
+import profileReducer from './profile-reducer';
 
 export type DialogPropsType =
     {
@@ -22,7 +14,7 @@ export type MessagePropsType =
     }
 
 
-export type PostPropsType =
+type PostPropsType =
     {
         id: number
         message: string
@@ -32,7 +24,8 @@ export type PostPropsType =
 export type ProfilePageType = {
     posts: Array<PostPropsType>
     newPostText: string
-}
+    profile: null | ProfileType
+    }
 
 export type MessagesPageType = {
     dialogs: Array<DialogPropsType>
@@ -57,47 +50,40 @@ export type UserType = {
         large: string
     }
 }
+type  ProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: object
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+    photos: {
+        small: string
+        large: string
+    }
+}
+
 
 
 export type rootStateType = {
     profilePage: ProfilePageType,
     dialogsPage: MessagesPageType,
-    // usersPage: usersPageType
-}
 
-export type ActionsTypes = UpdateNewPostTextActionType | AddPostActionType | UpdateNewMessageTextActionType |
-    SendMessageActionType | followACType | unfollowACType | setUsersACType | setCurrentPageACType | setTotalCountACType | setIsFetchingACType
-
-
-export const updateNewPostTextActionCreator = (postText: string) => {
-    return {
-        type: 'UPDATE_NEW_POST_TEXT',
-        newText: postText
-    } as const
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: 'ADD_POST',
-    } as const
-}
-
-export const updateNewMessageTextCreator = (body: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_TEXT',
-        body
-    } as const
-}
-export const sendMessageCreator = () => {
-    return {type: 'SEND_MESSAGE'} as const
 }
 
 
-export type  StoreType = {
+type  StoreType = {
     _state: rootStateType
     getState: () => rootStateType
     subscriber: any
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void
     _callSubscriber: (state: rootStateType) => void
 }
 
@@ -111,7 +97,9 @@ let store: StoreType = {
                 {id: 2, message: 'Yo. I am busy now.', likesCounts: 45},
                 {id: 3, message: 'Hello. i am your friend', likesCounts: 56},
             ],
-            newPostText: ''
+            newPostText: '',
+           profile: null
+
         },
         dialogsPage: {
             dialogs: [
