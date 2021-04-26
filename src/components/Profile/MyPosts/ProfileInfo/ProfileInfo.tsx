@@ -18,7 +18,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         <div className={s.content}>
             <img src='https://www.artd.ru/wp-content/uploads/2018/12/stydiya-tpl_01-01.jpg'/>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.small}/>
                 ava + description
             </div>
 

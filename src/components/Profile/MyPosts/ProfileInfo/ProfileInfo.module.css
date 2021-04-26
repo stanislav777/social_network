@@ -1,7 +1,10 @@
 
-.content img{
+.content img {
     width: 1000px;
 }
-.descriptionBlock{
+
+.descriptionBlock {
+    display: flex;
+    width: 100px;
     padding: 10px;
 }
