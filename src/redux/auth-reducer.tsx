@@ -24,8 +24,8 @@ const authReducer = (state: InitialAuthState = initialState, action: ActionsType
 }
 
 
-export const setUserDate = (userId: number, login: string, email: string) => ({type: SET_USER_DATE, data:{userId, login, email} } as const)
+export const setAuthUserDate = (userId: number, login: string, email: string) => ({type: SET_USER_DATE, data:{userId, login, email} } as const)
 
-type ActionsType = ReturnType<typeof setUserDate>
+type ActionsType = ReturnType<typeof setAuthUserDate>
 
 export default authReducer
