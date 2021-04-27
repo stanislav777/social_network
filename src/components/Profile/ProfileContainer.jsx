@@ -6,11 +6,14 @@ import {setUserProfileAC} from "../../redux/profile-reducer";
 import {withRouter} from "react-router";
 
 
-class ProfileContainer extends React.Component{
+class ProfileContainer extends React.Component {
     componentDidMount() {
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = 2
+        }
 
-        debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/+`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfileAC(response.data);
             })
@@ -20,17 +23,17 @@ class ProfileContainer extends React.Component{
 
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}   />
+                <Profile {...this.props} profile={this.props.profile}/>
             </div>
         )
     }
 }
 
-let mapStateToProps = (state) =>({
+let mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
 const ProfileContainerRouter = withRouter(ProfileContainer)
 
 
-export default connect(mapStateToProps, {setUserProfileAC} ) (ProfileContainerRouter);
+export default connect(mapStateToProps, {setUserProfileAC})(ProfileContainerRouter);
