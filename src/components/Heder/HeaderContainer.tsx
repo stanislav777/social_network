@@ -3,21 +3,20 @@ import Header from './Header';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {setAuthUserDate} from '../../redux/auth-reducer';
-import state, {UserType} from '../../redux/state';
 import {RootReduxState} from '../../redux/redax-store';
 
 
 export type HeaderContainerPropsType = {
-    id: number,
+    isAuth: boolean
+    // id: number,
     login: string,
-    email: string
+    // email: string
     setAuthUserDate: (id: number,
                       login: string,
                       email: string) => void
-
 }
 
-class HeaderContainer extends React.Component {
+class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
             .then(response => {
@@ -32,7 +31,7 @@ class HeaderContainer extends React.Component {
     render() {
         return <Header
             isAuth={this.props.isAuth}
-            login={this.props.isAuth}
+            login={this.props.login}
         />
     }
 };
