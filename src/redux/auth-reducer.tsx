@@ -4,7 +4,8 @@ const SET_USER_DATE = 'SET_USER_DATE';
 let initialState = {
    userId:null,
     login: null,
-   email: null
+   email: null,
+    isAuth: false
 };
 export type InitialAuthState = typeof initialState
 
@@ -15,7 +16,8 @@ const authReducer = (state: InitialAuthState = initialState, action: ActionsType
         case SET_USER_DATE:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
 
         default:
