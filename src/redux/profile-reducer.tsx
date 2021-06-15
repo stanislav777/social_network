@@ -1,5 +1,3 @@
-
-
 const  SET_USER_PROFILE = 'SET_USER_PROFILE';
 const  ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -78,3 +76,16 @@ export type  ProfileType = {
         large: string
     }
 }
+
+// export const unfollowThunkCreator = (userId:number) => {
+//     return (dispatch: Dispatch<ActionsType>) => {
+//         dispatch(toggleFollowingProgress(true, userId));
+//         usersAPI.unfolow(userId)
+//             .then(response => {
+//                 if (response.data.resultCode === 0) {
+//                     dispatch(unfollowSuccess(userId))
+//                 }
+//                 dispatch(toggleFollowingProgress(false, userId));
+//             })
+//     }
+// }
