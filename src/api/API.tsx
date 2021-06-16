@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {UserType} from '../redux/state';
 
 
 const instance = axios.create({
@@ -26,18 +25,3 @@ export const usersAPI = {
     }
 }
 
-export type UsersPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    onPageChanged: (pageNumber: number) => void
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    followingInProgress: []
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-}
-
-// createTodolist(title: string) {
-//     const promise = instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
-//     return promise;

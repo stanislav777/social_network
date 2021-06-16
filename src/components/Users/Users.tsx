@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/userspng.jpg';
-import {UserType} from '../../redux/state';
 import {NavLink} from 'react-router-dom';
+import { UserType } from '../../redux/users-reducer';
 
 
 export type UsersPropsType = {
@@ -41,18 +41,19 @@ let Users = (props: UsersPropsType) => {
           <span>
                <div>
                    <NavLink to={'/profile/' + user.id}>
-                   <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}/>
+                   <img alt="ph" src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}/>
                    </NavLink>
                </div>
               <div>
                   {user.followed
-                      ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                        props.followThunkCreator(user.id)
 
-                      }}> Follow </button>
+                      ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                        props.unfollowThunkCreator(user.id)
+                      }}> unFollow </button>
+
                       : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                          props.unfollowThunkCreator(user.id)
-                      }}> unFollow </button>}
+                          props.followThunkCreator(user.id)
+                      }}> Follow </button>}
               </div>
           </span>
                 <span>
