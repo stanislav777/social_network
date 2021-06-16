@@ -5,32 +5,16 @@ import {InitialDialogsState, sendMessageCreator, updateNewMessageTextCreator} fr
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-// type  DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
-
-// const DialogsContainer = (props: DialogsPropsType) => {
-//
-//
-//     let onSendMessageClick = () => {
-//         props.sendMessage()
-//     }
-//
-//     let onNewMessageChange = (body: string) => {
-//        props.updateNewMessageBody(body)
-//     }
-//
-//
-//     return <Dialogs updateNewMessageBody={onNewMessageChange}
-//                     sendMessage={onSendMessageClick}
-//                     dialogsPage={props.dialogsPage}/>
-// }
 
 type MapStateToPropsType = {
     dialogsPage: InitialDialogsState
+    isAuth: boolean
 }
 
 export let mapStateToProps = (state: RootReduxState): MapStateToPropsType =>{
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
