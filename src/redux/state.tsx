@@ -1,9 +1,9 @@
 //
-// export type DialogPropsType =
-//     {
-//         id: number
-//         name: string
-//     }
+export type DialoPropsType =
+    {
+        id: number
+        name: string
+    }
 //
 // export type MessagePropsType =
 //     {
@@ -122,4 +122,4 @@
 //     }
 // }
 //
-export default store;
+// export default store;
