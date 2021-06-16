@@ -1,3 +1,6 @@
+import {usersAPI} from '../api/API';
+import {Dispatch} from 'redux';
+
 const  SET_USER_PROFILE = 'SET_USER_PROFILE';
 const  ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -13,7 +16,7 @@ let initialState = {
 }
 export type InitialProfileState = typeof initialState
 
-const profileReducer = (state: InitialProfileState = initialState, action: ActionType) => {
+const profileReducer = (state: InitialProfileState = initialState, action: ActionsType) => {
     switch (action.type) {
 
         case 'ADD_POST':
@@ -44,7 +47,7 @@ export const updateNewPostTextAC = (postText: string) => {
 export const setUserProfileAC = (profile: ProfileType) => { return {type: SET_USER_PROFILE, profile} as const}
 
 
-type  ActionType =
+type  ActionsType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfileAC>
@@ -77,15 +80,11 @@ export type  ProfileType = {
     }
 }
 
-// export const unfollowThunkCreator = (userId:number) => {
-//     return (dispatch: Dispatch<ActionsType>) => {
-//         dispatch(toggleFollowingProgress(true, userId));
-//         usersAPI.unfolow(userId)
-//             .then(response => {
-//                 if (response.data.resultCode === 0) {
-//                     dispatch(unfollowSuccess(userId))
-//                 }
-//                 dispatch(toggleFollowingProgress(false, userId));
-//             })
-//     }
-// }
+export const getProfileThunkCreator = (userId:number) => {
+    return (dispatch: Dispatch<ActionsType>) => {
+        usersAPI.getProfile(userId)
+              .then(response => {
+                dispatch(setUserProfileAC(response.data));
+            })
+    }
+}

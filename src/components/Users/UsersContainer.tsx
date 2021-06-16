@@ -70,10 +70,7 @@ let mapStateToProps = (state: RootReduxState): MapStateToPropsType => {
 type MapDispatchToPropsType = {
     followThunkCreator: (userId: number) => void
     unfollowThunkCreator: (userId: number) => void
-    // setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
-    // setTotalCount: (totalCount: number) => void
-    // toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
@@ -82,10 +79,7 @@ type MapDispatchToPropsType = {
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     followThunkCreator,
     unfollowThunkCreator,
-    // setUsers,
     setCurrentPage,
-    // setTotalCount,
-    // toggleIsFetching,
     toggleFollowingProgress,
     getUsersThunkCreator,
 })(UsersContainer);
