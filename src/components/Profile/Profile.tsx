@@ -8,8 +8,6 @@ type PropsType  = {
     isAuth: boolean
 }
 const Profile: FC<PropsType> = ({profile}) => {
-debugger
-
 
     return (
         <div>

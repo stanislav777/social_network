@@ -5,6 +5,15 @@
 
 .descriptionBlock {
     display: flex;
-    width: 100px;
+    flex-direction: column;
+    width:150px;
+    height: 150px;
+    padding: 10px;
+}
+
+.ava {
+    display: inline;
+    width:50px;
+    height: 50px;
     padding: 10px;
 }

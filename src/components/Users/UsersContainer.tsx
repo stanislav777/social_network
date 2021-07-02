@@ -4,12 +4,15 @@ import {
     getUsersThunkCreator,
     setCurrentPage,
     toggleFollowingProgress,
-    unfollowThunkCreator, UserType
+    unfollowThunkCreator,
+    UserType
 } from '../../redux/users-reducer';
 import {RootReduxState} from '../../redux/redax-store';
 import {connect} from 'react-redux';
 import Preloder from '../Сommon/Preloader/Preloader';
 import Users from './Users';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 
 export type UsersAPIComponentPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -76,10 +79,23 @@ type MapDispatchToPropsType = {
 }
 
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+
+//
+// let WithAuthRedirectComponent = withAuthRedirect(UsersContainer)
+//
+//
+// export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
+//     followThunkCreator,
+//     unfollowThunkCreator,
+//     setCurrentPage,
+//     toggleFollowingProgress,
+//     getUsersThunkCreator,
+// })(WithAuthRedirectComponent);
+
+export default compose<React.ComponentType>(connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps, {
     followThunkCreator,
     unfollowThunkCreator,
     setCurrentPage,
     toggleFollowingProgress,
     getUsersThunkCreator,
-})(UsersContainer);
+}),withAuthRedirect)(UsersContainer)

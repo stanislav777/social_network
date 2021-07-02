@@ -1,8 +1,7 @@
-import React, {ChangeEvent} from "react";
-import s from "./Dialogs.module.css";
-import Message from "./Message/message";
-import DialogItem from "./DialogItem/dialogItem";
-import { Redirect } from "react-router-dom";
+import React, {ChangeEvent} from 'react';
+import s from './Dialogs.module.css';
+import Message from './Message/message';
+import DialogItem from './DialogItem/dialogItem';
 
 export type MessagesPageType = {
     dialogs: Array<DialogPropsType>
