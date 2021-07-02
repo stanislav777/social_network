@@ -33,9 +33,9 @@ const Dialogs = (props: DialogsPropsType) => {
 
 let dialogsPage = props.dialogsPage
 
-    let dialogs = dialogsPage.dialogs.map((d) => <DialogItem id={d.id} name={d.name}/>
+    let dialogs = dialogsPage.dialogs.map((d) => <DialogItem key={d.id} id={d.id} name={d.name}/>
     )
-    let messages = dialogsPage.messages.map((m) => <Message id={m.id} message={m.message}/>)
+    let messages = dialogsPage.messages.map((m) => <Message key={m.id} id={m.id} message={m.message}/>)
 
     let newMessageText = dialogsPage.newMessageText;
 
@@ -47,7 +47,7 @@ let dialogsPage = props.dialogsPage
         props.updateNewMessageBody(body)
     }
 
-    if(!props.isAuth){ return <Redirect to={'/login'}/>}
+    // if(!props.isAuth){ return <Redirect to={'/login'}/>}
 
     return (
         <div className={s.dialogs}>

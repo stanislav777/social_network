@@ -4,6 +4,7 @@ import {RootReduxState} from "../../redux/redax-store";
 import {InitialDialogsState, sendMessageCreator, updateNewMessageTextCreator} from '../../redux/dialogs-rerducer';
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 
 type MapStateToPropsType = {
@@ -34,5 +35,7 @@ export let  mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType  =
 }
 
 
-export default  connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps,mapDispatchToProps)(Dialogs);
 
+let DialogsContainer =  connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReduxState>(mapStateToProps,mapDispatchToProps)(Dialogs);
+
+export default DialogsContainer
