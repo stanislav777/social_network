@@ -6,9 +6,9 @@ type ProfileStatusType = {
 
 }
 
-type StateType = {
-    editMode: boolean
-}
+// type StateType = {
+//     editMode: boolean
+// }
 
 class ProfileStatus extends React.Component <ProfileStatusType> {
     state = {
@@ -16,9 +16,17 @@ class ProfileStatus extends React.Component <ProfileStatusType> {
     }
 
     activateEditMode = () => {
+        debugger
+        console.log(this)
       this.setState({
           editMode: true
       })
+    }
+
+    deactivateEditMode = () => {
+        this.setState({
+            editMode: false
+        })
     }
 
     render() {
@@ -31,7 +39,7 @@ class ProfileStatus extends React.Component <ProfileStatusType> {
                 }
                 {this.state.editMode &&
                     <div>
-                        <input value={this.props.status}/>
+                        <input autoFocus={true} onBlur={this.deactivateEditMode.bind(this)} value={this.props.status}/>
                     </div>
                 }
             </>
