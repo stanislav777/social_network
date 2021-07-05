@@ -7,12 +7,14 @@ type PropsType  = {
     profile: ProfileType
     isAuth: boolean
     status: string
+    updateStatusTC: ()=>void
+
 }
-const Profile: FC<PropsType> = ({profile}) => {
+const Profile: FC<PropsType> = (props) => {
 
     return (
         <div>
-            <ProfileInfo profile = {profile} status={props.status} updateStatusThunkCreator = {props.updateStatusThunkCreator}/>
+            <ProfileInfo profile = {props.profile} status={props.status} updateStatusTC = {props.updateStatusTC}/>
             <MyPostsContainer />
         </div>
     )
