@@ -6,12 +6,13 @@ import {ProfileType} from '../../redux/profile-reducer';
 type PropsType  = {
     profile: ProfileType
     isAuth: boolean
+    status: string
 }
 const Profile: FC<PropsType> = ({profile}) => {
 
     return (
         <div>
-            <ProfileInfo profile = {profile}/>
+            <ProfileInfo profile = {profile} status={props.status} updateStatusThunkCreator = {props.updateStatusThunkCreator}/>
             <MyPostsContainer />
         </div>
     )
