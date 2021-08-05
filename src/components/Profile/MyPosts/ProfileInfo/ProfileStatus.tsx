@@ -1,17 +1,12 @@
 import React from 'react';
-import { updateStatusTC } from '../../../../redux/profile-reducer';
-import * as events from 'events';
 
 type ProfileStatusType = {
     status: string
     updateStatusTC:(status: string)=>void
-    // activateEditMode: () => void
+
 
 }
 
-// type StateType = {
-//     editMode: boolean
-// }
 
 class ProfileStatus extends React.Component <ProfileStatusType> {
     state = {
@@ -36,7 +31,11 @@ class ProfileStatus extends React.Component <ProfileStatusType> {
            status:  e.currentTarget.value})
     }
 
-
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (prevProps.status !== this.props.status){
+         this.setState({status : this.props.status})
+        }
+    }
 
 
     render() {

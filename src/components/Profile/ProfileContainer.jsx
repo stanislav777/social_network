@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = 15223
+            userId = 2
         }
         this.props.getProfileTC(userId)
         this.props.getStatusTC(userId)
@@ -23,6 +23,7 @@ class ProfileContainer extends React.Component {
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatusTC={this.props.updateStatusTC}/>
+
             </div>
         )
     }
@@ -46,3 +47,14 @@ export default  connect(mapStateToProps, {getProfileTC,getStatusTC, updateStatus
 //     withAuthRedirect,
 //     connect(mapStateToProps, {getProfileThunkCreator})
 // )(ProfileContainer)
+
+
+
+
+
+
+
+
+
+
+
